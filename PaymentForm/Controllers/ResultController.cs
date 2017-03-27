@@ -7,6 +7,11 @@ namespace PaymentForm.Controllers
     {
         public ActionResult Fail(FailResultModel failResultModel)
         {
+            if (failResultModel.Message == null)
+            {
+                failResultModel.Message = "При обработке платежа произошла ошибка, попробуйте повторить оплату позже";
+            }
+
             return View(failResultModel);
         }
 

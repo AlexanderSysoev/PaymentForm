@@ -35,9 +35,7 @@ namespace PaymentForm.Controllers
             return RedirectToAction("Fail", "Result",
                 new FailResultModel
                 {
-                    Message =
-                        paymentResponse.Message ??
-                        "При обработке платежа произошла ошибка, попробуйте повторить оплату позже"
+                    Message = paymentResponse.Message
                 });
         }
     }
