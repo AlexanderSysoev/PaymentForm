@@ -1,0 +1,16 @@
+﻿@model PaymentForm.Models.ThreeDSecureModel
+<html>
+<head></head>
+<body>
+<form name="threeDSForm" action="@Model.AcsUrl" method="POST">
+    <input type="hidden" name="PaReq" value="@Model.PaReq">
+    <input type="hidden" name="MD" value="@Model.MD">
+    <input type="hidden" name="TermUrl" value="@Url.Action("Post3DS", "ThreeDSecure", null, Request.Url.Scheme)">
+</form>
+</body>
+</html>
+
+<script>
+    window.onload = submitForm;
+    function submitForm() { threeDSForm.submit(); }
+</script>

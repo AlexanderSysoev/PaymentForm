@@ -1,0 +1,10 @@
+﻿@model PaymentForm.Models.FailResultModel
+@{
+    ViewBag.Title = "Ошибка при обработке платежа";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h4>Не удалось завершить оплату</h4>
+<hr />
+<p>@Model.Message</p>

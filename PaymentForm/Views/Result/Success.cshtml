@@ -1,0 +1,51 @@
+﻿@model PaymentForm.Models.SuccessResultModel
+
+@{
+    ViewBag.Title = "Заказ оплачен";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h4>Заказ оплачен</h4>
+    <hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.OrderId)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.OrderId)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Amount)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Amount)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Currency)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Currency)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.CreatedDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.CreatedDate)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.TransactionId)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.TransactionId)
+    </dd>
+
+</dl>

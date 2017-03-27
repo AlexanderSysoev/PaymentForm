@@ -1,0 +1,87 @@
+﻿@model PaymentForm.Models.PaymentDetailsModel
+@{
+    ViewBag.Title = $"Оплата заказа №{Model.OrderId}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+@using (Html.BeginForm("Index", "Charge", FormMethod.Post, new {@Id = "paymentForm", role = "form"}))
+{
+    <div class="col-xs-12 col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Оплата заказа №@Model.OrderId
+                </h3>
+            </div>
+            <div class="panel-body">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.OrderId)
+                @Html.HiddenFor(m => m.CardHolderName)
+                @Html.HiddenFor(m => m.CardCryptogramPacket)
+
+                <div class="form-group">
+                    <label for="cardNumber">
+                        Номер карты
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="cardNumber" autofocus data-cp="cardNumber" value="4925000000000087"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-7 col-md-7">
+                        <div class="form-group">
+                            <label for="expityMonth">
+                                Срок действия
+                            </label>
+                            <div class="col-xs-6 col-lg-6 pl-ziro">
+                                <input type="text" class="form-control" id="expityMonth" data-cp="expDateMonth"/>
+                            </div>
+                            <div class="col-xs-6 col-lg-6 pl-ziro">
+                                <input type="text" class="form-control" id="expityYear" data-cp="expDateYear"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-md-5 pull-right">
+                        <div class="form-group">
+                            <label for="cvCode">
+                                CVV
+                            </label>
+                            <input type="password" class="form-control" id="cvCode" data-cp="cvv"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="cardHolder">
+                                Имя плательщика
+                            </label>
+                            <input type="text" class="form-control" id="cardHolder" autofocus data-cp="name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+                <a href="#"><span class="badge pull-right"><span class="glyphicon"></span>@Model.Amount @Model.Currency</span> Сумма </a>
+            </li>
+        </ul>
+        <br/>
+        <button class='btn btn-success btn-lg btn-block' type='submit'>Оплатить</button>
+    </div>
+}
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @Scripts.Render("https://widget.cloudpayments.ru/bundles/checkout")
+    @Scripts.Render("~/bundles/payment")
+    @Scripts.Render("~/bundles/jqueryval")
+}
